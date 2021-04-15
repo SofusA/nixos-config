@@ -1,0 +1,38 @@
+{
+    "layer": "top",
+    "height": 30,
+    "margin-bottom": -30,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["clock", "idle_inhibitor", "tray", "custom/audio", "custom/power"],
+
+    "sway/window": {
+        "max-length": 50
+    },
+    
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        "spacing": 10
+    },
+    
+    "clock": {
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+    },
+
+    "custom/audio": {
+        "format":"",
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power":{
+        "format":"",
+        "on-click":"swaynag -t warning -m 'Power Menu Options' -b 'Reboot' 'systemctl reboot' -b 'Suspend' 'systemctl suspend-then-hibernate' -b 'Shutdown' 'systemctl poweroff'"
+    }
+}
+
