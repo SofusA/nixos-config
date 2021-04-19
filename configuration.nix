@@ -30,18 +30,7 @@
           wlp6s0.useDHCP = true;
       };
   };
-  
-  # Bluetooth
-  #hardware.bluetooth.enable = true;
-  #services.blueman.enable = true;
-
-  # Auto log in
-  services.getty.autologinUser = "sofusa";
-
-  environment.loginShellInit = ''
-  [[ "$(tty)" == /dev/tty1 ]] && sway
-      '';
-  
+    
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
@@ -56,6 +45,9 @@
   # Enable sound.
   sound.enable = true;
   #hardware.pulseaudio.enable = true;
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
 
   # Define a user account
   programs.fish = {

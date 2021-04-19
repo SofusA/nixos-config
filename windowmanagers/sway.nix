@@ -3,7 +3,9 @@
 {
   programs.sway = {
     enable = true;
+    extraSessionCommands = "systemctl --user import-environment";
     extraPackages = with pkgs; [
+      # Sway stuff
       swayidle
       xwayland
       waybar
@@ -11,18 +13,18 @@
       swaybg
       wofi
       hicolor-icon-theme
+      kanshi
 
-      # Nice stuff
+      # Nice tiling stuff
       autotiling
       flashfocus
-
-      # Clipboard
-      #wl-clipboard
-      #clipman
 
       # Screenshots
       grim
       slurp
+
+      # Configuration utilities
+      pavucontrol
 
     ];
   };
@@ -32,29 +34,74 @@
   environment.pathsToLink = [ "/libexec" ];
 
   # pipewire stuff
-  programs.sway.extraSessionCommands = "systemctl --user import-environment";
   security.rtkit.enable = true;
   services.pipewire = {
       enable = true;
       pulse.enable = true;
   };
 
-  # xdg = {
-  #     portal = {
-  #         enable = true;
-  #         extraPortals = with pkgs; [
-  #             xdg-desktop-portal-wlr
-  #             xdg-desktop-portal-gtk
-  #         ];
-  #         gtkUsePortal = true;
-  #     };
-  # };
+  # Bluetooth
+  services.blueman.enable = true;
 
-  # environment.variables = {
-  #     MOZ_ENABLE_WAYLAND = "1";
-  #     XDG_CURRENT_DESKTOP = "sway";
-  #     XDG_SESSION_TYPE = "wayland";
-  # };
+  # Auto log in
+  services.getty.autologinUser = "sofusa";
+  environment.loginShellInit = ''
+  [[ "$(tty)" == /dev/tty1 ]] && sway
+      '';
+
+  # Dotfiles
+    environment = {
+      etc = {
+        "sway/config".source = ../dotfiles/sway/config;
+        "xdg/alacritty/alacritty.yml".source = ../dotfiles/alacritty/alacritty.yml;
+        "ranger/rc.conf".source = ../dotfiles/ranger/rc.conf;
+      };
+    };
+
+    home-manager.users.sofusa = {
+        xdg.configFile = {
+            "kak".source = ../dotfiles/kak;
+            "waybar".source = ../dotfiles/waybar;
+            "wofi".source = ../dotfiles/wofi;
+            "kitty".source = ../dotfiles/kitty;
+        };
+        gtk = {
+            enable = true;
+
+            iconTheme = {
+                name = "Papirus";
+                package = pkgs.papirus-icon-theme;
+            };
+            
+            theme = {
+                name = "Pop";
+                package = pkgs.pop-gtk-theme;
+            };
+
+            font = {
+                package = pkgs.roboto;
+                name = "Roboto 11";
+            };
+        };
+    };
+
+  # Screen sharing
+  #xdg = {
+  #    portal = {
+  #        enable = true;
+  #        extraPortals = with pkgs; [
+  #            xdg-desktop-portal-wlr
+  #            xdg-desktop-portal-gtk
+  #        ];
+  #        gtkUsePortal = true;
+  #    };
+  #};
+
+  environment.variables = {
+      MOZ_ENABLE_WAYLAND = "1";
+      XDG_CURRENT_DESKTOP = "sway";
+      XDG_SESSION_TYPE = "wayland";
+  };
 
   #environment.systemPackages = with pkgs; [
   #  (
