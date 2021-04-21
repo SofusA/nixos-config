@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
     # Docker
-    #virtualisation.docker.enable = true;
+    virtualisation.docker.enable = true;
     #virtualisation.libvirtd.enable = true;
 
     # Services and programs
@@ -45,7 +45,7 @@
       
       # Office stuff
       slack
-      #simplenote
+      simplenote
       #libreoffice
       nextcloud-client
       #teams
@@ -56,7 +56,7 @@
       #python38Full
       #python38Packages.pillow
       #python38Packages.pip
-      #nodejs
+      nodejs
 
       # Virtualisation
       #gnome3.gnome-boxes
