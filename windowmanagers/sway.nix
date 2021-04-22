@@ -25,6 +25,7 @@
 
       # Configuration utilities
       pavucontrol
+      gnome3.gnome-control-center
 
     ];
   };
@@ -33,55 +34,39 @@
   environment.systemPackages = with pkgs; [ polkit_gnome ];
   environment.pathsToLink = [ "/libexec" ];
 
-  # pipewire stuff
-  security.rtkit.enable = true;
-  services.pipewire = {
-      enable = true;
-      pulse.enable = true;
+  # keyring and gnome stuff
+  services.gnome3.gnome-keyring.enable = true;
+  programs.dconf.enable = true;
+  services.gnome3.evolution-data-server.enable = true;
+  services.gnome3.gnome-online-accounts.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome3.enable= true;
   };
 
   # Bluetooth
   services.blueman.enable = true;
 
+
+
   # Auto log in
-  services.getty.autologinUser = "sofusa";
-  environment.loginShellInit = ''
-  [[ "$(tty)" == /dev/tty1 ]] && sway
-      '';
+  #services.getty.autologinUser = "sofusa";
+  #environment.loginShellInit = ''
+  #[[ "$(tty)" == /dev/tty1 ]] && sway
+  #    '';
 
   # Dotfiles
     environment = {
       etc = {
         "sway/config".source = ../dotfiles/sway/config;
-        "xdg/alacritty/alacritty.yml".source = ../dotfiles/alacritty/alacritty.yml;
-        "ranger/rc.conf".source = ../dotfiles/ranger/rc.conf;
       };
     };
 
     home-manager.users.sofusa = {
         xdg.configFile = {
-            "kak".source = ../dotfiles/kak;
             "waybar".source = ../dotfiles/waybar;
             "wofi".source = ../dotfiles/wofi;
-            "kitty".source = ../dotfiles/kitty;
-        };
-        gtk = {
-            enable = true;
-
-            iconTheme = {
-                name = "Papirus";
-                package = pkgs.papirus-icon-theme;
-            };
-            
-            theme = {
-                name = "Pop";
-                package = pkgs.pop-gtk-theme;
-            };
-
-            font = {
-                package = pkgs.roboto;
-                name = "Roboto 11";
-            };
         };
     };
 

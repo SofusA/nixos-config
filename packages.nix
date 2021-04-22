@@ -18,6 +18,7 @@
       unzip
       fzf
       kakoune
+      gnome3.networkmanagerapplet
 
       # Desktop applications
       gthumb
@@ -49,6 +50,7 @@
       #libreoffice
       nextcloud-client
       #teams
+      gnome3.gnome-calendar
 
       # Development
       vscodium
@@ -70,6 +72,34 @@
       xorg.xhost
       gnome3.gnome-disk-utility
       #hfsprogs #måske ligegyldig mac hfs pakke
-      #udiskie
+      udiskie
     ];
+
+    # Dotfiles
+    home-manager.users.sofusa = {
+        xdg.configFile = {
+            "kak".source = ./dotfiles/kak;
+            "kitty".source = ./dotfiles/kitty;
+            "ranger".source = ./dotfiles/ranger;
+        };
+        gtk = {
+            enable = true;
+
+            iconTheme = {
+                name = "Papirus";
+                package = pkgs.papirus-icon-theme;
+            };
+            
+            theme = {
+                name = "Adwaita-dark";
+                #package = pkgs.pop-gtk-theme;
+            };
+
+            font = {
+                package = pkgs.roboto;
+                name = "Roboto 11";
+            };
+        };
+    };
+
 }

@@ -22,7 +22,7 @@
     },
     
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%A, %d. %B  %H:%M}"
     },
 
     "custom/audio": {

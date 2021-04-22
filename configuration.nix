@@ -5,7 +5,7 @@
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
       #./windowmanagers/wayfire.nix
-      ./windowmanagers/sway.nix
+      #./windowmanagers/sway.nix
       ./packages.nix
     ];
 
@@ -18,6 +18,14 @@
 
   # System version
   system.stateVersion = "20.03";
+
+  # pipewire stuff
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+  };
 
   # Network
   networking = {
