@@ -1,5 +1,0 @@
-#! /run/current-system/sw/bin/bash
-source ${BASH_SOURCE%/*}/.venv/bin/activate
-# virtualenv is now active.
-#
-python ${BASH_SOURCE%/*}/inactive-windows.py

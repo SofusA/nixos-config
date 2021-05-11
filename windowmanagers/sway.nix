@@ -14,6 +14,7 @@
       wofi
       hicolor-icon-theme
       kanshi
+      wl-clipboard
 
       # Nice tiling stuff
       autotiling
@@ -25,8 +26,9 @@
 
       # Configuration utilities
       pavucontrol
-      gnome3.gnome-control-center
-
+      # gnome3.gnome-control-center
+      gnome3.networkmanagerapplet
+      
     ];
   };
 
@@ -36,25 +38,24 @@
 
   # keyring and gnome stuff
   services.gnome3.gnome-keyring.enable = true;
-  programs.dconf.enable = true;
-  services.gnome3.evolution-data-server.enable = true;
-  services.gnome3.gnome-online-accounts.enable = true;
-  services.xserver = {
+  services.dbus = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome3.enable= true;
+    socketActivated = true;
+    packages = [ pkgs.gnome3.dconf ];
   };
+
+  # programs.dconf.enable = true;
+  # services.gnome3.evolution-data-server.enable = true;
+  # services.gnome3.gnome-online-accounts.enable = true;
 
   # Bluetooth
   services.blueman.enable = true;
 
-
-
   # Auto log in
-  #services.getty.autologinUser = "sofusa";
-  #environment.loginShellInit = ''
-  #[[ "$(tty)" == /dev/tty1 ]] && sway
-  #    '';
+  services.getty.autologinUser = "sofusa";
+  environment.loginShellInit = ''
+  [[ "$(tty)" == /dev/tty1 ]] && sway
+     '';
 
   # Dotfiles
     environment = {

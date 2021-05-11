@@ -3,7 +3,8 @@
     "height": 30,
     "margin-bottom": -30,
     "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["clock", "idle_inhibitor", "tray", "custom/audio", "custom/power"],
+    "modules-center": ["clock"],
+    "modules-right": ["idle_inhibitor", "tray", "custom/audio", "custom/power"],
 
     "sway/window": {
         "max-length": 50

@@ -7,6 +7,10 @@
     min-height: 0;
 }
 
+.modules-center {
+
+}
+
 window#waybar {
     background-color: transparent;
     color: #ffffff;
@@ -83,9 +87,4 @@ label:focus {
 #custom-audio {
     margin-right: 10px;
     margin-top: 2px;
-}
-
-#clock {
-    margin-right: 10px;
-    margin-top: 4px;
 }

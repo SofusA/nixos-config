@@ -5,7 +5,7 @@
       ./hardware-configuration.nix
       (import "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos")
       #./windowmanagers/wayfire.nix
-      #./windowmanagers/sway.nix
+      ./windowmanagers/sway.nix
       ./packages.nix
     ];
 
@@ -15,6 +15,14 @@
 
   # Linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Gnome stuff
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager.gdm.enable = true;
+  #   desktopManager.gnome3.enable= true;
+  # };
+
 
   # System version
   system.stateVersion = "20.03";
@@ -63,6 +71,7 @@
     shellAliases = {
        #nv = "nvim";
        #vim = "nvim";
+       upgrade = "sudo nixos-rebuild switch --upgrade && swaymsg reload; killall .waybar-wrapped && swaymsg exec waybar";
     };
   };
 
