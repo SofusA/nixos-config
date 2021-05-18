@@ -40,7 +40,6 @@
   services.gnome3.gnome-keyring.enable = true;
   services.dbus = {
     enable = true;
-    socketActivated = true;
     packages = [ pkgs.gnome3.dconf ];
   };
 

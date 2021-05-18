@@ -32,12 +32,12 @@
         xboxdrv
         multimc
         signal-desktop
-        lutris
-        mesa
-        vulkan-loader
-        vulkan-headers
-        vulkan-validation-layers
-        vulkan-tools
+        # lutris
+        # mesa
+        # vulkan-loader
+        # vulkan-headers
+        # vulkan-validation-layers
+        # vulkan-tools
         amdvlk
         protontricks
 
@@ -67,7 +67,7 @@
         #etcher
         #woeusb
         xorg.xhost
-        #gnome3.gnome-disk-utility
+        gnome3.gnome-disk-utility
         #hfsprogs #måske ligegyldig mac hfs pakke
         udiskie
     ];
